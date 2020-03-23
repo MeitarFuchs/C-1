@@ -15,10 +15,6 @@ using namespace std;
 
 
 
-
-
-
-
 TEST_CASE("Test replacement of p and b") {
 
 string text = "xxx happy yyy";
@@ -30,8 +26,6 @@ CHECK(find(text, "habby") == string("happy"));
 CHECK(find(text, "hapby") == string("happy"));
 
 CHECK(find(text, "habpy") == string("happy"));
-
-/* Add more checks here */
 
 }
 
@@ -259,7 +253,9 @@ CHECK(find(text, "HAPPI") == string("Happi"));
 
 CHECK(find(text, "HaPpI") == string("Happi"));
 
-/* Add more checks here */
+CHECK(find(text, "HAPpI") == string("Happi"));
+
+CHECK(find(text, "HaPPI") == string("Happi"));
 
 }
 
