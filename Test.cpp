@@ -8,11 +8,9 @@
 
 using namespace phonetic;
 
-
 #include <string>
 
 using namespace std;
-
 
 
 TEST_CASE("Test replacement of p and b") {

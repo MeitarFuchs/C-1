@@ -3,9 +3,10 @@
 //
 
 #include <string>
+#include "PhoneticFinder.hpp"
+
 using namespace std;
-string test;
-string word;
+
 namespace phonetic
 {
    string find(string text,string word)
