@@ -1,6 +1,8 @@
-//
-// Created by meitarfuchs on 23/03/2020.
-//
+/*
+#AUTHORS Salome Rivka Meitar
+#DATE  23/03/2020.
+
+ */
 
 #include "doctest.h"
 
