@@ -56,6 +56,7 @@ namespace phonetic
                 {
                     j=0;
                     char cc;
+                    ansWord=currword;
                     while (currword[j])
                     {
                         cc=currword[j];
@@ -120,8 +121,10 @@ namespace phonetic
                     if (b==true)
                     {
                         countW++;
-                        ansWord=currword;
                     }
+                    else
+                        ansWord="";
+
                     currword="";
                 }
 
@@ -131,7 +134,6 @@ namespace phonetic
 
         if (countW==0)
             throw ("not good");
-
 
         else
             return ansWord;
