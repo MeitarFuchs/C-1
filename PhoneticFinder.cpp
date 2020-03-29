@@ -2,6 +2,7 @@
 // Created by meitarfuchs on 23/03/2020.
 //
 #include <string>
+#include "PhoneticFinder.hpp"
 #ifndef UNTITLED1_PHONETIC_H
 #define UNTITLED1_PHONETIC_H
 #include <stdexcept>
@@ -19,54 +20,60 @@ namespace phonetic
     string find(string text, string word)
     {
 
-        if ((word.compare("") == 0 || (word.compare(NULL) == 0) || (word.compare(" ") == 0)))
-            throw ("not good");
+        if ((word=="")   || word.empty() || (word==" ")) {
 
+            throw ("empty word");
+        }
 
-        if ((text.compare("") == 0)|| (text.compare(NULL) == 0))
-            throw ("not good");
+        if ((text=="")   || text.empty() || (text==" "))
+            throw ("empty text");
 
 
         int countW=0;
-        string currline;
-        string currword;
-        string ansWord;
-        // str.length()
+        string currline="";
+        string currword="";
+        string ansWord="";
         size_t lenText=text.length();
         int lenCurrWord=0;
         int lenWord=word.length();
-        int k=0, j=0;
+        int k=0;
         bool b=true;
         char c;
         for (int i=0; i<lenText; i++)
         {
 
-            c=text[i];
+                c = text[i];
 
-            if ( c != ' ' )
-                currword = currword + c;
+                if (c != ' ')
+                    currword = currword + c;
 
 
-            else
+                if ( (c== ' ' && currword != ""  ) || ( (i+1)==lenText)   )
             { // if you space
                 b=true;
+                ansWord=currword;
 
                 lenCurrWord=currword.length();
                 if (lenCurrWord==lenWord)
                 {
-                    j=0;
-                    char cc;
-                    ansWord=currword;
-                    while (currword[j])
+cout<< "if (lenCurrWord==lenWord)"<<endl;
+                    if (currword==word)
+                        return ansWord;
+
+                    for (size_t h = 0; h < currword.length();h++)
                     {
-                        cc=currword[j];
-                        putchar(tolower(cc));
-                        j++;
+                        currword[h] = tolower(currword[h]);
                     }
 
+                    for (size_t h = 0; h < word.length();h++)
+                    {
+                        word[h] = tolower(word[h]);
+                    }
+
+                    k=0;
                     while (k<lenWord && k<lenCurrWord && b==true)
                     {
-                        if ( word[k]==currword[k] )
+                        if ( word[k] == currword[k] )
                         {
                             k++;
                         }
@@ -81,7 +88,17 @@ namespace phonetic
                             k++;
                         }
                         else
-                        if ( (word[k]=='b' || word[k]=='p' || word[k]=='f') && (currword[k]=='b' || currword[k]=='p' || currword[k]=='f') )
+                        if ( (word[k]=='b' || word[k]=='f') && (currword[k]=='b' || currword[k]=='f') )
+                        {
+                            k++;
+                        }
+                        else
+                        if ( (word[k]=='b' || word[k]=='p') && (currword[k]=='b' || currword[k]=='p' ) )
+                        {
+                            k++;
+                        }
+                        else
+                        if ( (word[k]=='f' || word[k]=='p') && (currword[k]=='f' || currword[k]=='p' ) )
                         {
                             k++;
                         }
@@ -101,7 +118,7 @@ namespace phonetic
                             k++;
                         }
                         else
-                        if ( (word[k]=='f' || word[k]=='z' ) && (currword[k]=='f' || currword[k]=='z' ) )
+                        if ( (word[k]=='s' || word[k]=='z' ) && (currword[k]=='s' || currword[k]=='z' ) )
                         {
                             k++;
                         }
@@ -110,32 +127,35 @@ namespace phonetic
                         {
                             k++;
                         }
-
                         else
                         {
                             b=false;
                         }
 
+                        cout<< "k:  "<< k << endl;
                     }
 
                     if (b==true)
                     {
-                        countW++;
+                       return ansWord;
                     }
-                    else
-                        ansWord="";
 
-                    currword="";
+                    ansWord.clear();
+                    currword.clear();
                 }
-
+                currword.clear();
+                ansWord.clear();
             }
-
         }
 
-        if (countW==0)
-            throw ("not good");
+        if (b==false)
+        {
+            throw ("not found");
+        }
 
-        else
-            return ansWord;
     }
+
+
+
+
 }
