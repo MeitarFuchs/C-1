@@ -56,7 +56,7 @@ namespace phonetic
                 lenCurrWord=currword.length();
                 if (lenCurrWord==lenWord)
                 {
-cout<< "if (lenCurrWord==lenWord)"<<endl;
+
                     if (currword==word)
                         return ansWord;
 
@@ -131,8 +131,6 @@ cout<< "if (lenCurrWord==lenWord)"<<endl;
                         {
                             b=false;
                         }
-
-                        cout<< "k:  "<< k << endl;
                     }
 
                     if (b==true)
